@@ -1,0 +1,13 @@
+---
+- hosts: webservers
+  tasks:
+    - name: Nginx setup
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+    
+    - name: Starting Nginx
+      service:
+        name: nginx
+        state: started

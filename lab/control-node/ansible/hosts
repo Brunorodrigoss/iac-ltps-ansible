@@ -1,0 +1,6 @@
+[giropops]
+node-01
+
+[webservers]
+node-02
+node-03
