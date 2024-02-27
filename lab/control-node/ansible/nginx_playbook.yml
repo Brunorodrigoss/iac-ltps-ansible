@@ -13,3 +13,8 @@
       service:
         name: nginx
         state: started
+
+    - name: Copy personalized index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
