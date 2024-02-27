@@ -4,7 +4,6 @@ sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository --yes --update ppa:ansible/ansible
 sudo apt install -y ansible
-sudo locale-gen UTF-8
 
 cat <<EOT >> /etc/hosts
 192.168.2.10 control-node
