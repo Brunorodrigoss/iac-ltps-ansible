@@ -1,0 +1,35 @@
+---
+- name: Configure Nginx
+
+  hosts: webservers
+  become: true
+  remote_user: vagrant
+  
+  tasks:
+    - name: Nginx setup
+      apt:
+        name: nginx
+        state: latest
+        update_cache: yes
+      
+    - name: Starting Nginx
+      service:
+        name: nginx
+        state: started
+
+    - name: Copy personalized index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+    - name: Copy nginx.conf
+      copy:
+        src: nginx.conf
+        dest: /etc/nginx/nginx.conf
+      notify: Restarting Nginx
+
+  handlers:
+    - name: Restarting Nginx
+      service:
+        name: nginx
+        state: restarted
