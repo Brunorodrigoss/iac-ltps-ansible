@@ -26,7 +26,8 @@ ansible -i hosts node-01 -m setup
 
 ansible -i hosts all -m setup -a "filter=ansible_distribution"
 
-ansible-playbook -i hosts nginx_playbook.yml -s
+ansible-playbook -i hosts nginx_playbook.yml -b
 
 ps -ef
 
+sudo netstat -atunp
