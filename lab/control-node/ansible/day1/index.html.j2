@@ -5,6 +5,7 @@
     <body>
         <h1>I'm using template</h1>
         <p>This is my IP: {{ ansible_enp0s8.ipv4.address }}</p>
+        <p>Distribution: {{ ansible_lsb.description }}</p>
         
         <p><em>Thank you for using nginx.</em></p>        
     </body>
