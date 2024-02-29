@@ -33,3 +33,7 @@ ps -ef
 sudo netstat -atunp
 
 ansible-playbook -i /vagrant/ansible/hosts /vagrant/ansible/day1/nginx_playbook.yml
+
+### Day 2
+
+ansible-galaxy init create
