@@ -25,3 +25,28 @@
     keypair={{ keypair }}
     count={{ count }}
   register: ec2
+
+- name: Add instance into temporary inventory
+  add_hosts: name={{ item.public_ip }} groups=giropops-new
+  with_items: "{{ ec2.instances }}"
+
+- name: Add created instances on hosts file
+  local_action: lineinfile
+    dest="./hosts"
+    regexp={{ item.public_ip }}
+    insertafter="[kubernetes]" line={{ item.public_ip }}
+  with_items: "{{ ec2.instances }}"
+
+- name: SSH wait
+  local_action: wait_for
+    host={{ item.public_ip }}
+    port=22
+    state=started
+  with_items: "{{ ec2.instances }}"
+
+- name: Add tag name into instance
+  local_action: ec2_tag resource={{ item.id }} region={{ region }} state=present
+  with_items: "{{ ec2. instances }}"
+  args:
+    tags:
+      Name: ansible-day2
