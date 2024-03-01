@@ -1,4 +1,5 @@
 ---
+# vars file for create
 instance_type: t2.medium
 security_group: giropops
 image: 	ami-09563a10670fc573c # https://cloud-images.ubuntu.com/locator/ec2/
