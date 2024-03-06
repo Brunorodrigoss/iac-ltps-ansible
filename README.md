@@ -37,3 +37,6 @@ ansible-playbook -i /vagrant/ansible/hosts /vagrant/ansible/day1/nginx_playbook.
 ### Day 2
 
 ansible-galaxy init create
+
+export AWS_SECRET_ACCESS_KEY="xxx"
+export AWS_ACCESS_KEY_ID="xxx"
