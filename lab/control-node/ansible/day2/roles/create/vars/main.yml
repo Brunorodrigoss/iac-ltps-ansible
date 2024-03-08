@@ -6,3 +6,4 @@ image: 	ami-09563a10670fc573c # https://cloud-images.ubuntu.com/locator/ec2/
 keypair: ansible-uncomplicated
 region: us-east-1
 count: 3
+profile: giropops
