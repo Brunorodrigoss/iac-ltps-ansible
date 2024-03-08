@@ -9,7 +9,7 @@ cat <<EOT >> /etc/hosts
 192.168.2.10 control-node
 192.168.2.11 node-01
 192.168.2.12 node-02
-192.168.2.13 node-03
+192.168.2.13 master
 EOT
 
 # cat <<EOT >> /etc/ansible/hosts
