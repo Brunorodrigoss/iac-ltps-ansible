@@ -52,3 +52,7 @@
   args:
     tags:
       Name: ansible-day2
+
+- name: Add the newly created EC2 into know_hosts
+  shell: ssh-keyscan -H {{ item.public_ip }} >> ~/.ssh/know_hosts
+  with_items: "{{ ec2.instances }}"
