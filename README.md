@@ -41,3 +41,11 @@ ansible-galaxy init create
 `export AWS_SECRET_ACCESS_KEY=xxx`
 
 `export AWS_ACCESS_KEY_ID=xxx`
+
+ansible -i /vagrant/ansible/day2/install_k8s/hosts all -m ping
+
+ansible-playbook -i /vagrant/ansible/day2/install_k8s/hosts /vagrant/ansible/day2/install_k8s/main.yml
+
+ansible -i /vagrant/ansible/day2/install_k8s/hosts all -a "docker --version" -u vagrant
+
+ansible -i /vagrant/ansible/day2/install_k8s/hosts all -a "kubectl version" -u vagrant
