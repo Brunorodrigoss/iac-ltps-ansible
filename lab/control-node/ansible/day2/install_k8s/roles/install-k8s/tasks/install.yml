@@ -2,18 +2,26 @@
 - name: Install Docker
   shell: curl -fsSL https://get.docker.com | bash -
 
-- name: Add apt signing key
-  apt_key:
-    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-    state: present
+# - name: Add apt signing key
+  # apt_key:
+  #   url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+  #   state: present
 
-- name: Add K8s repository
-  apt_repository:
-    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+# - name: Add K8s repository
+  # apt_repository:
+  #   repo: deb http://packages.cloud.google.com/apt/ kubernetes-xenial main
+
+# https://kubernetes.io/blog/2023/08/15/pkgs-k8s-io-introduction/#how-to-migrate 
+- name: Kubernetes community-owned repository
+  shell: echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+
+- name: Download public signing key for K8s repository
+  shell: curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 - name: Install K8s packages
   apt:
     name: "{{ packages }}"
+    update_cache: yes
   vars:
     packages:
     - kubelet
